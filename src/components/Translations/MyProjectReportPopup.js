@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import { Typography } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import { makeStyles, createStyles } from "@material-ui/core/styles";
 import LinearProgress, {
   LinearProgressProps,
@@ -88,22 +88,20 @@ export default function SimplePopover(props) {
             let oldBooks = []
             for (let book of oldTestments){                                                                              //for order objects and also adding three code book name to the object
               let booksKey = data.bookWiseData[book]
-              if (booksKey != null){
-                booksKey.bookCode = book
-                booksKey.id = book
-              }
               oldBooks.push(booksKey);
+              // if (booksKey != null){
+              //   booksKey.bookCode = book
+              // }
             }
             // setRows(oldBooks)
             setOldTestmentBooks(oldBooks)
             let newBooks = []
             for(let book of newTestments){                                                                               //for order objects and also adding three code book name to the object
               let booksKey = data.bookWiseData[book]
-              if (booksKey != null){
-                booksKey.bookCode = book
-                booksKey.id = book
-              }
               newBooks.push(booksKey);
+              // if (booksKey != null){
+              //   booksKey.bookCode = book
+              // }
             }
             setNewTestmentBooks(newBooks)
           }
@@ -131,14 +129,13 @@ export default function SimplePopover(props) {
 
   const columns = [
     {
-      name: <span style={{fontSize:'90%'}}>BOOK NAME</span>,
+      name: <span style={{fontSize:'90%', fontWeight: 'bold'}}>BOOK NAME</span>,
       selector: "bookCode",
       sortable: true,
-      cell: (row) => (<React.Fragment >{`${row.bookCode.toUpperCase()}`}</React.Fragment>)
+      cell: (row) => (<React.Fragment >{`${row.bookName.toUpperCase()}`}</React.Fragment>)
     },
     {
-      name: <span style={{fontSize:'90%'}}>TOKEN TRANSLATION PROGRESS</span>,
-      selector: "completed",
+      name: <span style={{fontSize:'90%', fontWeight: 'bold'}}>TOKEN TRANSLATION PROGRESS</span>,
       sortable: true,
       cell: (row) => (
         <div className={classes.fullWidth}>
@@ -151,11 +148,9 @@ export default function SimplePopover(props) {
       ),
     },
     {
-      name: <span style={{fontSize:'90%'}}>DRAFT PROGRESS</span>,
-      selector: "completed",
-      sortable:true,
-      cell: (row) => <React.Fragment>
-      {`${row.completed}%`}</React.Fragment>,
+      name: <span style={{fontSize:'90%', fontWeight: 'bold'}}>DRAFT PROGRESS</span>,
+      sortable: true,
+      cell: (row) => <React.Fragment>{`${row.completed}%`}</React.Fragment>,
     },
   ];
 
@@ -176,12 +171,19 @@ export default function SimplePopover(props) {
         onClose={handleCloses}
         scroll={scroll}
         fullWidth={true} 
-        maxWidth = {'sm'}
+        maxWidth = {'md'}
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description"
       >
         <DialogTitle id="scroll-dialog-title">
-          Bookwise Translation Progress <span style={{fontSize:'70%'}}>({"Books Assigned  -  " + props.bookCount})</span>
+          <Grid container>
+            <Grid item sm={6} style={{fontSize:'80%', fontWeight:'bold'}}>
+            Bookwise Translation Progress 
+            </Grid>
+            <Grid item sm={6} style={{fontSize:'80%', fontWeight:"bold", textAlign:"right"}}>
+              {"Books Assigned  -  " + props.bookCount}
+            </Grid>
+          </Grid>
         </DialogTitle>
 
         <DialogContent dividers={scroll === "paper"}>
@@ -195,11 +197,18 @@ export default function SimplePopover(props) {
             ) : (
               <div style={{ height: 400, width: '100%' }}>
               {oldTestmentBooks != null && (
-                <DataTable
-                  title={<span style={{fontSize:'70%', fontWeight:'bold'}}>OLD TESTMENT</span>}
-                  columns={columns}
-                  data={oldTestmentBooks}
-                />
+                  <DataTable
+                    title={<span style={{fontSize:'90%', fontWeight:'bold'}}>OLD TESTMENT</span>}
+                    columns={columns}
+                    data={oldTestmentBooks}
+                  />
+                )}
+                {newTestmentBooks != null && (
+                  <DataTable
+                    title={<span style={{fontSize:'90%', fontWeight:'bold'}}>NEW TESTMENT</span>}
+                    columns={columns}
+                    data={newTestmentBooks}
+                  />
                 )}
               {newTestmentBooks != null && (
                 <DataTable
