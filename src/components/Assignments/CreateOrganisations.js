@@ -101,7 +101,7 @@ class CreateOrganisations extends Component {
                 <Container component="main" maxWidth="xs" className={classes.pageContainer}>
                 <Paper elevation='3' style={{padding:'8%'}}>
                     <Typography component="h1" variant="h5" style={{textAlign:"center" ,paddingBottom:"4%"}}>
-                        Create Organisation
+                        Create Workspace
                 </Typography>
                     <form className={classes.form} onSubmit={this.handleLoginSubmit} style={{padding:'3%'}}>
                             <Grid container spacing={0}>
@@ -112,7 +112,7 @@ class CreateOrganisations extends Component {
                                     required
                                     fullWidth
                                     id="organisationName"
-                                    label="Organisation Name"
+                                    label="Workspace Name"
                                     name="organisationName"
                                     autoComplete="organisationName"
                                     // autoFocus

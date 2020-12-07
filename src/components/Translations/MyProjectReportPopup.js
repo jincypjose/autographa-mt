@@ -136,6 +136,7 @@ export default function SimplePopover(props) {
     },
     {
       name: <span style={{fontSize:'90%', fontWeight: 'bold'}}>TOKEN TRANSLATION PROGRESS</span>,
+      selector: "completed",
       sortable: true,
       cell: (row) => (
         <div className={classes.fullWidth}>
@@ -149,6 +150,7 @@ export default function SimplePopover(props) {
     },
     {
       name: <span style={{fontSize:'90%', fontWeight: 'bold'}}>DRAFT PROGRESS</span>,
+      selector: "completed",
       sortable: true,
       cell: (row) => <React.Fragment>{`${row.completed}%`}</React.Fragment>,
     },
@@ -210,13 +212,6 @@ export default function SimplePopover(props) {
                     data={newTestmentBooks}
                   />
                 )}
-              {newTestmentBooks != null && (
-                <DataTable
-                  title={<span style={{fontSize:'70%', fontWeight:'bold'}}>NEW TESTMENT</span>}
-                  columns={columns}
-                  data={newTestmentBooks}
-                />
-               )}
               </div>
             )}
           </DialogContentText>
