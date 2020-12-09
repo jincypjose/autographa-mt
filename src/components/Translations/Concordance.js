@@ -137,7 +137,8 @@ class Concordance extends Component {
 			<Grid container sm={12} className={classes.containerGrid}>
 				<Grid item sm={12} >
 					<Typography component="h4" variant="h7" style={{textAlign:"left" ,padding:"1%"}}>
-                   		{selectedBook.toUpperCase()} Concordance
+                         Book Concordance
+			            {/* {selectedBook.toUpperCase()} Concordance */}
 					</Typography>
 				</Grid>
 				<Grid item sm={12} style={{height: '100px'}}>
